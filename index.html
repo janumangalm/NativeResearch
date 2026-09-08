@@ -1,0 +1,1949 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="NativeResearch - Explore, learn and share research.">
+    <title>NativeResearch | Explore. Learn. Innovate.</title>
+
+    <style>
+        /* =========================
+           NativeResearch Base Styles
+           ========================= */
+
+        :root {
+            --navy-950: #06111f;
+            --navy-900: #085297;
+            --navy-850: #0b1d30;
+            --navy-800: #10283e;
+            --cyan: #19d9ff;
+            --blue: #168cff;
+            --white: #ffffff;
+            --text: #eaf7ff;
+            --muted: #9eb3c7;
+            --dark-text: #102033;
+            --card: #ffffff;
+            --border: rgba(25, 217, 255, 0.18);
+            --shadow: 0 18px 45px rgba(0, 0, 0, 0.2);
+            --radius: 18px;
+            --container: 1180px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--navy-950);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        button,
+        input,
+        textarea,
+        select {
+            font: inherit;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .container {
+            width: min(92%, var(--container));
+            margin: 0 auto;
+        }
+
+        .section {
+            padding: 90px 0;
+        }
+
+        .section-heading {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .section-heading .eyebrow {
+            color: var(--cyan);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .section-heading h2 {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            margin-bottom: 10px;
+        }
+
+        .section-heading p {
+            max-width: 650px;
+            margin: 0 auto;
+            color: var(--muted);
+        }
+
+        /* =========================
+           Navbar
+           ========================= */
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(6, 17, 31, 0.94);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(14px);
+        }
+
+        .nav-container {
+            min-height: 74px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 25px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.25rem;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
+        .logo-mark {
+            width: 38px;
+            height: 38px;
+            display: grid;
+            place-items: center;
+            border-radius: 11px;
+            background: linear-gradient(135deg, var(--cyan), var(--blue));
+            color: var(--navy-950);
+            font-weight: 900;
+            box-shadow: 0 0 25px rgba(25, 217, 255, 0.25);
+        }
+
+        .logo span:last-child {
+            color: var(--white);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-links a {
+            padding: 9px 13px;
+            color: #c9d8e5;
+            font-size: 0.95rem;
+            border-radius: 9px;
+            transition: 0.25s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a:focus-visible {
+            color: var(--cyan);
+            background: rgba(25, 217, 255, 0.08);
+            outline: none;
+        }
+
+        .nav-explore {
+            padding: 11px 18px !important;
+            color: var(--navy-950) !important;
+            background: var(--cyan);
+            font-weight: 700;
+            margin-left: 5px;
+        }
+
+        .nav-explore:hover,
+        .nav-explore:focus-visible {
+            color: var(--navy-950) !important;
+            background: #67e8ff !important;
+        }
+
+        .menu-toggle {
+            display: none;
+            border: 0;
+            background: transparent;
+            color: var(--white);
+            font-size: 1.8rem;
+            line-height: 1;
+        }
+
+        /* =========================
+           Hero
+           ========================= */
+
+        .hero {
+            min-height: 650px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background:
+                radial-gradient(circle at 80% 20%, rgba(22, 140, 255, 0.18), transparent 32%),
+                radial-gradient(circle at 15% 80%, rgba(25, 217, 255, 0.08), transparent 28%),
+                var(--navy-950);
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            width: 450px;
+            height: 450px;
+            right: -170px;
+            top: 90px;
+            border: 1px solid rgba(25, 217, 255, 0.12);
+            border-radius: 50%;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            width: 650px;
+            height: 650px;
+            right: -260px;
+            top: -20px;
+            border: 1px solid rgba(25, 217, 255, 0.06);
+            border-radius: 50%;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 780px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 13px;
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            color: var(--cyan);
+            background: rgba(25, 217, 255, 0.06);
+            font-size: 0.82rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 7vw, 5.7rem);
+            line-height: 1.02;
+            letter-spacing: -3px;
+            margin-bottom: 22px;
+        }
+
+        .hero h1 span {
+            color: var(--cyan);
+        }
+
+        .hero-description {
+            max-width: 670px;
+            color: var(--muted);
+            font-size: 1.08rem;
+            margin-bottom: 32px;
+        }
+
+        .search-box {
+            width: min(100%, 720px);
+            display: flex;
+            gap: 10px;
+            padding: 8px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.11);
+            border-radius: 15px;
+        }
+
+        .search-box input {
+            min-width: 0;
+            flex: 1;
+            border: 0;
+            outline: 0;
+            padding: 14px 15px;
+            color: var(--white);
+            background: transparent;
+        }
+
+        .search-box input::placeholder {
+            color: #8298ac;
+        }
+
+        .primary-btn {
+            border: 0;
+            border-radius: 11px;
+            padding: 13px 20px;
+            background: linear-gradient(135deg, var(--cyan), var(--blue));
+            color: var(--navy-950);
+            font-weight: 800;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .primary-btn:hover,
+        .primary-btn:focus-visible {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(25, 217, 255, 0.2);
+            outline: none;
+        }
+
+        /* =========================
+           Statistics
+           ========================= */
+
+        .stats {
+            margin-top: -55px;
+            position: relative;
+            z-index: 5;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .stat-card {
+            padding: 28px 20px;
+            text-align: center;
+            border-radius: var(--radius);
+            background: var(--navy-800);
+            border: 1px solid rgba(25, 217, 255, 0.12);
+            box-shadow: var(--shadow);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--cyan);
+        }
+
+        .stat-card p {
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        /* =========================
+           Research
+           ========================= */
+
+        .research-section {
+            background: #f4f9fc;
+            color: var(--dark-text);
+        }
+
+        .research-section .section-heading p {
+            color: #637589;
+        }
+
+        .research-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 28px;
+        }
+
+        .result-message {
+            color: #637589;
+            font-size: 0.92rem;
+        }
+
+        .clear-btn {
+            border: 1px solid #cddae4;
+            background: white;
+            color: #34495a;
+            border-radius: 9px;
+            padding: 9px 14px;
+            font-weight: 700;
+        }
+
+        .clear-btn:hover {
+            border-color: var(--cyan);
+            color: #087da1;
+        }
+
+        .research-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .research-card {
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+            padding: 25px;
+            border-radius: var(--radius);
+            background: var(--card);
+            box-shadow: 0 12px 35px rgba(22, 45, 66, 0.09);
+            border: 1px solid #e6eef4;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .research-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 18px 42px rgba(22, 45, 66, 0.14);
+        }
+
+        .research-category {
+            width: fit-content;
+            padding: 5px 10px;
+            border-radius: 999px;
+            background: #e7faff;
+            color: #0786a8;
+            font-size: 0.75rem;
+            font-weight: 800;
+            margin-bottom: 14px;
+        }
+
+        .research-card h3 {
+            font-size: 1.2rem;
+            line-height: 1.35;
+            margin-bottom: 10px;
+        }
+
+        .research-author {
+            color: #607486;
+            font-size: 0.85rem;
+            margin-bottom: 13px;
+        }
+
+        .research-abstract {
+            color: #657889;
+            font-size: 0.92rem;
+            flex: 1;
+            margin-bottom: 20px;
+        }
+
+        .read-btn {
+            width: 100%;
+            border: 0;
+            padding: 11px 15px;
+            border-radius: 10px;
+            background: var(--navy-900);
+            color: white;
+            font-weight: 700;
+            transition: 0.2s ease;
+        }
+
+        .read-btn:hover,
+        .read-btn:focus-visible {
+            background: var(--blue);
+            outline: none;
+        }
+
+        .empty-state {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 55px 20px;
+            border: 2px dashed #d3e0e9;
+            border-radius: var(--radius);
+            color: #637589;
+            background: white;
+        }
+
+        /* =========================
+           Categories
+           ========================= */
+
+        .categories-section {
+            background: var(--navy-900);
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 16px;
+        }
+
+        .category-card {
+            min-height: 145px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            gap: 9px;
+            border: 1px solid rgba(255, 255, 255, 0.09);
+            background: var(--navy-850);
+            color: white;
+            border-radius: var(--radius);
+            padding: 18px;
+            transition: 0.25s ease;
+        }
+
+        .category-card:hover,
+        .category-card.active,
+        .category-card:focus-visible {
+            transform: translateY(-4px);
+            border-color: var(--cyan);
+            background: rgba(25, 217, 255, 0.08);
+            outline: none;
+        }
+
+        .category-icon {
+            width: 44px;
+            height: 44px;
+            display: grid;
+            place-items: center;
+            border-radius: 12px;
+            background: rgba(25, 217, 255, 0.1);
+            color: var(--cyan);
+            font-size: 1.25rem;
+            font-weight: 900;
+        }
+
+        .category-card span:last-child {
+            color: #c7d6e3;
+            font-size: 0.88rem;
+        }
+
+        /* =========================
+           About
+           ========================= */
+
+        .about-section {
+            background: #081827;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 55px;
+            align-items: center;
+        }
+
+        .about-content h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 18px;
+        }
+
+        .about-content h2 span {
+            color: var(--cyan);
+        }
+
+        .about-content p {
+            color: var(--muted);
+            margin-bottom: 15px;
+        }
+
+        .about-points {
+            display: grid;
+            gap: 12px;
+            margin-top: 25px;
+        }
+
+        .about-point {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+
+        .check {
+            flex: 0 0 auto;
+            width: 25px;
+            height: 25px;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            color: var(--navy-950);
+            background: var(--cyan);
+            font-weight: 900;
+            font-size: 0.8rem;
+        }
+
+        .about-visual {
+            min-height: 340px;
+            position: relative;
+            display: grid;
+            place-items: center;
+            border: 1px solid rgba(25, 217, 255, 0.14);
+            border-radius: 28px;
+            background:
+                radial-gradient(circle at center, rgba(25, 217, 255, 0.12), transparent 50%),
+                var(--navy-850);
+            overflow: hidden;
+        }
+
+        .about-visual::before,
+        .about-visual::after {
+            content: "";
+            position: absolute;
+            border: 1px solid rgba(25, 217, 255, 0.16);
+            border-radius: 50%;
+        }
+
+        .about-visual::before {
+            width: 210px;
+            height: 210px;
+        }
+
+        .about-visual::after {
+            width: 310px;
+            height: 310px;
+        }
+
+        .visual-core {
+            position: relative;
+            z-index: 2;
+            width: 100px;
+            height: 100px;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--cyan), var(--blue));
+            color: var(--navy-950);
+            font-size: 2rem;
+            font-weight: 900;
+            box-shadow: 0 0 50px rgba(25, 217, 255, 0.25);
+        }
+
+        /* =========================
+           Publish
+           ========================= */
+
+        .publish-section {
+            background: #f4f9fc;
+            color: var(--dark-text);
+        }
+
+        .publish-wrapper {
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        .publish-form {
+            background: white;
+            padding: clamp(22px, 5vw, 42px);
+            border-radius: 22px;
+            border: 1px solid #e1ebf2;
+            box-shadow: 0 15px 45px rgba(20, 45, 70, 0.1);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #263b4d;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            border: 1px solid #cfdae3;
+            border-radius: 10px;
+            padding: 12px 13px;
+            color: #1d2e3e;
+            background: white;
+            outline: none;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--blue);
+            box-shadow: 0 0 0 3px rgba(22, 140, 255, 0.1);
+        }
+
+        .form-group textarea {
+            min-height: 145px;
+            resize: vertical;
+        }
+
+        .file-help {
+            color: #748797;
+            font-size: 0.8rem;
+        }
+
+        .file-name {
+            color: #0786a8;
+            font-size: 0.85rem;
+            font-weight: 700;
+            min-height: 20px;
+        }
+
+        .form-actions {
+            margin-top: 25px;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .form-message {
+            display: none;
+            margin-top: 18px;
+            padding: 12px 14px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        .form-message.error {
+            display: block;
+            color: #9a2d2d;
+            background: #fff0f0;
+            border: 1px solid #f0c4c4;
+        }
+
+        .form-message.success {
+            display: block;
+            color: #147044;
+            background: #edfff5;
+            border: 1px solid #b9e9cd;
+        }
+
+        /* =========================
+           Footer
+           ========================= */
+
+        footer {
+            padding: 28px 0;
+            background: #040d17;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .footer-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .footer-content p {
+            color: #72879a;
+            font-size: 0.85rem;
+        }
+
+        .footer-brand {
+            color: var(--cyan);
+            font-weight: 800;
+        }
+
+        /* =========================
+           Modal
+           ========================= */
+
+        .modal {
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: rgba(2, 9, 17, 0.78);
+            backdrop-filter: blur(7px);
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            width: min(100%, 700px);
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 30px;
+            border-radius: 20px;
+            background: white;
+            color: var(--dark-text);
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 14px;
+            right: 15px;
+            width: 36px;
+            height: 36px;
+            border: 0;
+            border-radius: 50%;
+            background: #eef4f7;
+            color: #324657;
+            font-size: 1.3rem;
+        }
+
+        .modal-close:hover,
+        .modal-close:focus-visible {
+            background: #dceaf1;
+            outline: none;
+        }
+
+        .modal-category {
+            color: #0786a8;
+            font-size: 0.8rem;
+            font-weight: 800;
+            margin-bottom: 7px;
+        }
+
+        .modal-content h2 {
+            line-height: 1.25;
+            margin-bottom: 7px;
+            padding-right: 40px;
+        }
+
+        .modal-author {
+            color: #718494;
+            font-size: 0.9rem;
+            margin-bottom: 22px;
+        }
+
+        .modal-content h3 {
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+
+        .modal-content p {
+            color: #536a7c;
+            line-height: 1.8;
+        }
+
+        /* =========================
+           Responsive
+           ========================= */
+
+        @media (max-width: 980px) {
+            .nav-links {
+                gap: 2px;
+            }
+
+            .research-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .category-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .section {
+                padding: 70px 0;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 74px;
+                left: 0;
+                right: 0;
+                display: none;
+                flex-direction: column;
+                align-items: stretch;
+                padding: 12px 4%;
+                background: rgba(6, 17, 31, 0.98);
+                border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .nav-links a {
+                padding: 13px;
+            }
+
+            .nav-explore {
+                margin-left: 0;
+            }
+
+            .hero {
+                min-height: 590px;
+            }
+
+            .hero h1 {
+                letter-spacing: -2px;
+            }
+
+            .search-box {
+                flex-direction: column;
+            }
+
+            .search-box button {
+                width: 100%;
+            }
+
+            .stats {
+                margin-top: -30px;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .research-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .category-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full {
+                grid-column: auto;
+            }
+
+            .form-actions,
+            .form-actions button {
+                width: 100%;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 430px) {
+            .container {
+                width: min(94%, var(--container));
+            }
+
+            .stats-grid {
+                gap: 10px;
+            }
+
+            .stat-card {
+                padding: 20px 10px;
+            }
+
+            .stat-number {
+                font-size: 1.5rem;
+            }
+
+            .category-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+
+            .category-card {
+                min-height: 125px;
+                padding: 12px;
+            }
+
+            .modal-content {
+                padding: 23px 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================
+         Navbar
+         ========================= -->
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="#home" class="logo" aria-label="NativeResearch Home">
+                <span class="logo-mark">N</span>
+                <span>NativeResearch</span>
+            </a>
+
+            <button
+                class="menu-toggle"
+                id="menuToggle"
+                aria-label="Open navigation menu"
+                aria-expanded="false"
+                type="button"
+            >
+                ☰
+            </button>
+
+            <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+                <a href="#home">Home</a>
+                <a href="#papers">Papers</a>
+                <a href="#categories">Categories</a>
+                <a href="#about">About</a>
+                <a href="#papers" class="nav-explore">Explore</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- =========================
+             Hero Section
+             ========================= -->
+        <section class="hero" id="home">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-badge">Research • Discover • Innovate</div>
+
+                    <h1>
+                        Explore.<br>
+                        Learn. <span>Innovate.</span>
+                    </h1>
+
+                    <p class="hero-description">
+                        Discover research, explore new ideas, and share knowledge
+                        with a growing community of curious researchers.
+                    </p>
+
+                    <form class="search-box" id="searchForm" role="search">
+                        <input
+                            type="search"
+                            id="searchInput"
+                            placeholder="Search research, topics, authors..."
+                            aria-label="Search research"
+                            autocomplete="off"
+                        >
+                        <button class="primary-btn" type="submit">
+                            Search
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================
+             Statistics
+             ========================= -->
+        <section class="stats" aria-label="Research statistics">
+            <div class="container stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number" id="paperCount">50+</div>
+                    <p>Research Papers</p>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-number">20+</div>
+                    <p>Topics</p>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-number" id="researcherCount">10+</div>
+                    <p>Researchers</p>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-number">5+</div>
+                    <p>Research Fields</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================
+             Featured Research
+             ========================= -->
+        <section class="section research-section" id="papers">
+            <div class="container">
+                <div class="section-heading">
+                    <div class="eyebrow">Featured Research</div>
+                    <h2>Explore Research Papers</h2>
+                    <p>
+                        Browse research across technology, science, environment,
+                        and biology.
+                    </p>
+                </div>
+
+                <div class="research-controls">
+                    <p class="result-message" id="resultMessage" aria-live="polite">
+                        Showing all research papers
+                    </p>
+
+                    <button
+                        class="clear-btn"
+                        id="clearSearch"
+                        type="button"
+                        hidden
+                    >
+                        Clear Search
+                    </button>
+                </div>
+
+                <div
+                    class="research-grid"
+                    id="researchGrid"
+                    aria-live="polite"
+                ></div>
+            </div>
+        </section>
+
+        <!-- =========================
+             Categories
+             ========================= -->
+        <section class="section categories-section" id="categories">
+            <div class="container">
+                <div class="section-heading">
+                    <div class="eyebrow">Browse</div>
+                    <h2>Research by Category</h2>
+                    <p>
+                        Select a category to quickly find relevant research.
+                    </p>
+                </div>
+
+                <div class="category-grid">
+                    <button
+                        class="category-card active"
+                        type="button"
+                        data-category="All"
+                    >
+                        <span class="category-icon">✦</span>
+                        <strong>All</strong>
+                        <span>All Research</span>
+                    </button>
+
+                    <button
+                        class="category-card"
+                        type="button"
+                        data-category="AI & Technology"
+                    >
+                        <span class="category-icon">AI</span>
+                        <strong>AI & Technology</strong>
+                        <span>Technology Research</span>
+                    </button>
+
+                    <button
+                        class="category-card"
+                        type="button"
+                        data-category="Science"
+                    >
+                        <span class="category-icon">⚛</span>
+                        <strong>Science</strong>
+                        <span>Scientific Research</span>
+                    </button>
+
+                    <button
+                        class="category-card"
+                        type="button"
+                        data-category="Environment"
+                    >
+                        <span class="category-icon">E</span>
+                        <strong>Environment</strong>
+                        <span>Environmental Research</span>
+                    </button>
+
+                    <button
+                        class="category-card"
+                        type="button"
+                        data-category="Biology"
+                    >
+                        <span class="category-icon">B</span>
+                        <strong>Biology</strong>
+                        <span>Biological Research</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================
+             About
+             ========================= -->
+        <section class="section about-section" id="about">
+            <div class="container about-grid">
+                <div class="about-content">
+                    <div class="section-heading" style="text-align:left; margin-bottom:25px;">
+                        <div class="eyebrow">About NativeResearch</div>
+                        <h2>A place for <span>curiosity</span> and discovery.</h2>
+                    </div>
+
+                    <p>
+                        NativeResearch is a simple research platform designed to
+                        make exploring and sharing research easier.
+                    </p>
+
+                    <p>
+                        Discover ideas from different fields, read research
+                        abstracts, and publish your own work using the platform.
+                    </p>
+
+                    <div class="about-points">
+                        <div class="about-point">
+                            <span class="check">✓</span>
+                            <p>Explore research from multiple fields.</p>
+                        </div>
+
+                        <div class="about-point">
+                            <span class="check">✓</span>
+                            <p>Search papers by title, category, author, or abstract.</p>
+                        </div>
+
+                        <div class="about-point">
+                            <span class="check">✓</span>
+                            <p>Share your own research through the publishing form.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-visual" aria-hidden="true">
+                    <div class="visual-core">NR</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================
+             Publish Research
+             ========================= -->
+        <section class="section publish-section" id="publish">
+            <div class="container publish-wrapper">
+                <div class="section-heading">
+                    <div class="eyebrow">Share Knowledge</div>
+                    <h2>Publish Your Research</h2>
+                    <p>
+                        Add your research to this client-side demo platform.
+                        Files are handled locally and are not uploaded anywhere.
+                    </p>
+                </div>
+
+                <form class="publish-form" id="publishForm" novalidate>
+                    <div class="form-grid">
+
+                        <div class="form-group full">
+                            <label for="paperTitle">
+                                Research Paper Title *
+                            </label>
+                            <input
+                                type="text"
+                                id="paperTitle"
+                                name="paperTitle"
+                                placeholder="Enter research paper title"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="authorName">
+                                Author Name *
+                            </label>
+                            <input
+                                type="text"
+                                id="authorName"
+                                name="authorName"
+                                placeholder="Enter author name"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="paperCategory">
+                                Category *
+                            </label>
+                            <select
+                                id="paperCategory"
+                                name="paperCategory"
+                                required
+                            >
+                                <option value="">Select category</option>
+                                <option value="AI & Technology">AI & Technology</option>
+                                <option value="Science">Science</option>
+                                <option value="Environment">Environment</option>
+                                <option value="Biology">Biology</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group full">
+                            <label for="paperAbstract">
+                                Research Abstract *
+                            </label>
+                            <textarea
+                                id="paperAbstract"
+                                name="paperAbstract"
+                                placeholder="Write a short abstract or description of your research..."
+                                required
+                            ></textarea>
+                        </div>
+
+                        <div class="form-group full">
+                            <label for="paperFile">
+                                Research File *
+                            </label>
+
+                            <input
+                                type="file"
+                                id="paperFile"
+                                name="paperFile"
+                                accept=".pdf,.doc,.docx,.txt"
+                                required
+                            >
+
+                            <span class="file-help">
+                                Select a research file. The file remains local
+                                to your browser and is not uploaded to a server.
+                            </span>
+
+                            <span
+                                class="file-name"
+                                id="fileName"
+                                aria-live="polite"
+                            ></span>
+                        </div>
+                    </div>
+
+                    <div
+                        class="form-message"
+                        id="formMessage"
+                        role="alert"
+                        aria-live="assertive"
+                    ></div>
+
+                    <div class="form-actions">
+                        <button class="primary-btn" type="submit">
+                            Publish Research
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- =========================
+         Footer
+         ========================= -->
+    <footer>
+        <div class="container footer-content">
+            <p>
+                © <span id="currentYear"></span>
+                <span class="footer-brand">NativeResearch</span>.
+                Explore. Learn. Innovate.
+            </p>
+
+            <p>Research made simple.</p>
+        </div>
+    </footer>
+
+    <!-- =========================
+         Research Modal
+         ========================= -->
+    <div
+        class="modal"
+        id="researchModal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modalTitle"
+    >
+        <div class="modal-content">
+            <button
+                class="modal-close"
+                id="modalClose"
+                type="button"
+                aria-label="Close research details"
+            >
+                ×
+            </button>
+
+            <div class="modal-category" id="modalCategory"></div>
+
+            <h2 id="modalTitle"></h2>
+
+            <div class="modal-author" id="modalAuthor"></div>
+
+            <h3>Abstract</h3>
+            <p id="modalAbstract"></p>
+        </div>
+    </div>
+
+    <script>
+        /* =========================
+           NativeResearch JavaScript
+           ========================= */
+
+        "use strict";
+
+        /* -------------------------
+           Demo Research Data
+           ------------------------- */
+
+        const researchData = [
+            {
+                id: "ai-001",
+                title: "Artificial Intelligence in Modern Education",
+                author: "Dr. Ananya Sharma",
+                category: "AI & Technology",
+                abstract:
+                    "Artificial intelligence can support modern education by helping students receive personalized learning experiences. This research explores simple AI-based tools for learning support, feedback, and educational content."
+            },
+            {
+                id: "ai-002",
+                title: "Machine Learning for Smart Systems",
+                author: "Rahul Verma",
+                category: "AI & Technology",
+                abstract:
+                    "Machine learning allows computer systems to identify patterns and improve their performance from data. This paper discusses how machine learning can be used in smart systems for prediction, automation, and decision-making."
+            },
+            {
+                id: "science-001",
+                title: "Renewable Energy and Scientific Innovation",
+                author: "Dr. Arjun Mehta",
+                category: "Science",
+                abstract:
+                    "Renewable energy technologies are becoming increasingly important for sustainable development. This research examines scientific innovations in solar, wind, and other renewable energy systems."
+            },
+            {
+                id: "science-002",
+                title: "Exploring New Materials for Sustainable Technology",
+                author: "Priya Singh",
+                category: "Science",
+                abstract:
+                    "New materials can help improve the efficiency and sustainability of modern technology. This paper explores material properties and their possible applications in energy-efficient technological systems."
+            },
+            {
+                id: "environment-001",
+                title: "Climate Change and Sustainable Development",
+                author: "Neha Kumari",
+                category: "Environment",
+                abstract:
+                    "Climate change creates challenges for ecosystems, communities, and economic development. This research discusses sustainable approaches that can reduce environmental pressure while supporting long-term development."
+            },
+            {
+                id: "environment-002",
+                title: "Reducing Plastic Waste Through Better Recycling",
+                author: "Aman Kumar",
+                category: "Environment",
+                abstract:
+                    "Plastic waste is a major environmental concern. This research examines how improved collection, sorting, and recycling practices can help reduce plastic waste and encourage more responsible resource use."
+            },
+            {
+                id: "biology-001",
+                title: "Plant Adaptation to Environmental Changes",
+                author: "Dr. Kavya Rao",
+                category: "Biology",
+                abstract:
+                    "Plants respond to changes in temperature, water availability, light, and other environmental conditions. This research explores common plant adaptations that help organisms survive changing environments."
+            },
+            {
+                id: "biology-002",
+                title: "Microorganisms and Their Role in Ecosystems",
+                author: "Vivek Patel",
+                category: "Biology",
+                abstract:
+                    "Microorganisms play important roles in ecosystems by decomposing organic matter and supporting nutrient cycles. This paper explains their contribution to ecosystem balance and environmental processes."
+            }
+        ];
+
+        /* -------------------------
+           Application State
+           ------------------------- */
+
+        let selectedCategory = "All";
+        let searchTerm = "";
+
+        /* -------------------------
+           DOM Elements
+           ------------------------- */
+
+        const researchGrid = document.getElementById("researchGrid");
+        const searchForm = document.getElementById("searchForm");
+        const searchInput = document.getElementById("searchInput");
+        const clearSearch = document.getElementById("clearSearch");
+        const resultMessage = document.getElementById("resultMessage");
+
+        const publishForm = document.getElementById("publishForm");
+        const paperTitle = document.getElementById("paperTitle");
+        const authorName = document.getElementById("authorName");
+        const paperCategory = document.getElementById("paperCategory");
+        const paperAbstract = document.getElementById("paperAbstract");
+        const paperFile = document.getElementById("paperFile");
+        const fileName = document.getElementById("fileName");
+        const formMessage = document.getElementById("formMessage");
+
+        const researchModal = document.getElementById("researchModal");
+        const modalClose = document.getElementById("modalClose");
+        const modalCategory = document.getElementById("modalCategory");
+        const modalTitle = document.getElementById("modalTitle");
+        const modalAuthor = document.getElementById("modalAuthor");
+        const modalAbstract = document.getElementById("modalAbstract");
+
+        const menuToggle = document.getElementById("menuToggle");
+        const navLinks = document.getElementById("navLinks");
+
+        /* -------------------------
+           Utility
+           ------------------------- */
+
+        function escapeHTML(value) {
+            return String(value)
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        /* -------------------------
+           Render Research
+           ------------------------- */
+
+        function renderResearch() {
+            const normalizedSearch = searchTerm.trim().toLowerCase();
+
+            const filteredResearch = researchData.filter((paper) => {
+                const matchesCategory =
+                    selectedCategory === "All" ||
+                    paper.category === selectedCategory;
+
+                if (!matchesCategory) {
+                    return false;
+                }
+
+                if (!normalizedSearch) {
+                    return true;
+                }
+
+                const searchableText = [
+                    paper.title,
+                    paper.category,
+                    paper.author,
+                    paper.abstract
+                ]
+                    .join(" ")
+                    .toLowerCase();
+
+                return searchableText.includes(normalizedSearch);
+            });
+
+            researchGrid.innerHTML = "";
+
+            if (filteredResearch.length === 0) {
+                researchGrid.innerHTML = `
+                    <div class="empty-state">
+                        <h3>No research found.</h3>
+                        <p>Try another topic or keyword.</p>
+                    </div>
+                `;
+
+                resultMessage.textContent =
+                    "No research found. Try another topic or keyword.";
+            } else {
+                filteredResearch.forEach((paper) => {
+                    const card = document.createElement("article");
+                    card.className = "research-card";
+
+                    card.innerHTML = `
+                        <div class="research-category">
+                            ${escapeHTML(paper.category)}
+                        </div>
+
+                        <h3>${escapeHTML(paper.title)}</h3>
+
+                        <p class="research-author">
+                            By ${escapeHTML(paper.author)}
+                        </p>
+
+                        <p class="research-abstract">
+                            ${escapeHTML(paper.abstract)}
+                        </p>
+
+                        <button
+                            class="read-btn"
+                            type="button"
+                            data-research-id="${escapeHTML(paper.id)}"
+                        >
+                            Read Research
+                        </button>
+                    `;
+
+                    researchGrid.appendChild(card);
+                });
+
+                const categoryText =
+                    selectedCategory === "All"
+                        ? "all categories"
+                        : selectedCategory;
+
+                resultMessage.textContent =
+                    `Showing ${filteredResearch.length} research paper${
+                        filteredResearch.length === 1 ? "" : "s"
+                    } from ${categoryText}.`;
+            }
+
+            clearSearch.hidden = !searchTerm.trim();
+        }
+
+        /* -------------------------
+           Search Research
+           ------------------------- */
+
+        function searchResearch() {
+            searchTerm = searchInput.value.trim();
+            renderResearch();
+
+            document.getElementById("papers").scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+        }
+
+        /* -------------------------
+           Category Filter
+           ------------------------- */
+
+        function filterByCategory(category) {
+            selectedCategory = category;
+
+            document.querySelectorAll(".category-card").forEach((button) => {
+                const isActive = button.dataset.category === category;
+                button.classList.toggle("active", isActive);
+                button.setAttribute("aria-pressed", String(isActive));
+            });
+
+            renderResearch();
+
+            document.getElementById("papers").scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+        }
+
+        /* -------------------------
+           Search Events
+           ------------------------- */
+
+        searchForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+            searchResearch();
+        });
+
+        searchInput.addEventListener("input", function () {
+            searchTerm = searchInput.value.trim();
+            renderResearch();
+        });
+
+        clearSearch.addEventListener("click", function () {
+            searchInput.value = "";
+            searchTerm = "";
+            renderResearch();
+            searchInput.focus();
+        });
+
+        /* -------------------------
+           Category Events
+           ------------------------- */
+
+        document.querySelectorAll(".category-card").forEach((button) => {
+            button.addEventListener("click", function () {
+                filterByCategory(button.dataset.category);
+            });
+        });
+
+        /* -------------------------
+           Research Modal
+           ------------------------- */
+
+        function openResearchModal(id) {
+            const paper = researchData.find((item) => item.id === id);
+
+            if (!paper) {
+                return;
+            }
+
+            modalCategory.textContent = paper.category;
+            modalTitle.textContent = paper.title;
+            modalAuthor.textContent = `By ${paper.author}`;
+            modalAbstract.textContent = paper.abstract;
+
+            researchModal.classList.add("active");
+            document.body.style.overflow = "hidden";
+
+            setTimeout(() => {
+                modalClose.focus();
+            }, 50);
+        }
+
+        function closeResearchModal() {
+            researchModal.classList.remove("active");
+            document.body.style.overflow = "";
+        }
+
+        researchGrid.addEventListener("click", function (event) {
+            const button = event.target.closest(".read-btn");
+
+            if (!button) {
+                return;
+            }
+
+            openResearchModal(button.dataset.researchId);
+        });
+
+        modalClose.addEventListener("click", closeResearchModal);
+
+        researchModal.addEventListener("click", function (event) {
+            if (event.target === researchModal) {
+                closeResearchModal();
+            }
+        });
+
+        document.addEventListener("keydown", function (event) {
+            if (event.key === "Escape") {
+                closeResearchModal();
+            }
+        });
+
+        /* -------------------------
+           File Upload
+           ------------------------- */
+
+        function updateFileName() {
+            if (paperFile.files && paperFile.files.length > 0) {
+                fileName.textContent =
+                    `Selected file: ${paperFile.files[0].name}`;
+            } else {
+                fileName.textContent = "";
+            }
+        }
+
+        paperFile.addEventListener("change", updateFileName);
+
+        /* -------------------------
+           Form Validation
+           ------------------------- */
+
+        function validateForm() {
+            const title = paperTitle.value.trim();
+            const author = authorName.value.trim();
+            const category = paperCategory.value;
+            const abstract = paperAbstract.value.trim();
+            const file = paperFile.files[0];
+
+            if (!title) {
+                return {
+                    valid: false,
+                    message: "Please enter the research paper title."
+                };
+            }
+
+            if (!author) {
+                return {
+                    valid: false,
+                    message: "Please enter the author name."
+                };
+            }
+
+            if (!category) {
+                return {
+                    valid: false,
+                    message: "Please select a research category."
+                };
+            }
+
+            if (!abstract) {
+                return {
+                    valid: false,
+                    message: "Please enter the research abstract."
+                };
+            }
+
+            if (!file) {
+                return {
+                    valid: false,
+                    message: "Please select a research file."
+                };
+            }
+
+            return {
+                valid: true,
+                message: ""
+            };
+        }
+
+        /* -------------------------
+           Show Form Message
+           ------------------------- */
+
+        function showFormMessage(message, type) {
+            formMessage.textContent = message;
+            formMessage.className = `form-message ${type}`;
+        }
+
+        /* -------------------------
+           Handle Publishing
+           ------------------------- */
+
+        function handlePublish(event) {
+            event.preventDefault();
+
+            const validation = validateForm();
+
+            if (!validation.valid) {
+                showFormMessage(validation.message, "error");
+                return;
+            }
+
+            const newPaper = {
+                id: `user-${Date.now()}`,
+                title: paperTitle.value.trim(),
+                author: authorName.value.trim(),
+                category: paperCategory.value,
+                abstract: paperAbstract.value.trim()
+            };
+
+            researchData.unshift(newPaper);
+
+            /*
+             * The selected file is intentionally NOT uploaded or stored.
+             * Only its filename is displayed locally in the browser.
+             */
+
+            publishForm.reset();
+            updateFileName();
+
+            searchTerm = "";
+            searchInput.value = "";
+            selectedCategory = "All";
+
+            document.querySelectorAll(".category-card").forEach((button) => {
+                const isActive = button.dataset.category === "All";
+                button.classList.toggle("active", isActive);
+                button.setAttribute("aria-pressed", String(isActive));
+            });
+
+            renderResearch();
+            updateStatistics();
+
+            showFormMessage(
+                "Research published successfully!",
+                "success"
+            );
+
+            document.getElementById("papers").scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+
+            setTimeout(() => {
+                formMessage.className = "form-message";
+                formMessage.textContent = "";
+            }, 5000);
+        }
+
+        publishForm.addEventListener("submit", handlePublish);
+
+        /* -------------------------
+           Dynamic Statistics
+           ------------------------- */
+
+        function updateStatistics() {
+            /*
+             * The original design shows 50+ papers.
+             * Demo papers are added to that displayed baseline.
+             */
+            const userPublishedCount = Math.max(
+                0,
+                researchData.length - 8
+            );
+
+            const displayedCount = 50 + userPublishedCount;
+
+            document.getElementById("paperCount").textContent =
+                `${displayedCount}+`;
+
+            const authors = new Set(
+                researchData.map((paper) => paper.author)
+            );
+
+            if (authors.size > 10) {
+                document.getElementById("researcherCount").textContent =
+                    `${authors.size}+`;
+            } else {
+                document.getElementById("researcherCount").textContent =
+                    "10+";
+            }
+        }
+
+        /* -------------------------
+           Mobile Navigation
+           ------------------------- */
+
+        menuToggle.addEventListener("click", function () {
+            const isOpen = navLinks.classList.toggle("open");
+
+            menuToggle.setAttribute(
+                "aria-expanded",
+                String(isOpen)
+            );
+
+            menuToggle.setAttribute(
+                "aria-label",
+                isOpen
+                    ? "Close navigation menu"
+                    : "Open navigation menu"
+            );
+        });
+
+        navLinks.addEventListener("click", function (event) {
+            if (event.target.matches("a")) {
+                navLinks.classList.remove("open");
+                menuToggle.setAttribute("aria-expanded", "false");
+                menuToggle.setAttribute(
+                    "aria-label",
+                    "Open navigation menu"
+                );
+            }
+        });
+
+        /* -------------------------
+           Initialize
+           ------------------------- */
+
+        document
+            .querySelectorAll(".category-card")
+            .forEach((button) => {
+                button.setAttribute(
+                    "aria-pressed",
+                    button.dataset.category === "All"
+                        ? "true"
+                        : "false"
+                );
+            });
+
+        document.getElementById("currentYear").textContent =
+            new Date().getFullYear();
+
+        renderResearch();
+        updateStatistics();
+    </script>
+
+</body>
+</html>
